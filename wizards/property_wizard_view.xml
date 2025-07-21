@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="property_wizard_view_tree" model="ir.ui.view">
+        <field name="name">property_wizard.view.tree</field>
+        <field name="model">property.wizard</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="property_id"></field>
+                <field name="state"></field>
+                <field name="reason"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="property_wizard_view_form" model="ir.ui.view">
+        <field name="name">property_wizard.view.form</field>
+        <field name="model">property.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="property_id"></field>
+                        <field name="state"></field>
+                        <field name="reason"></field>                        
+                    </group>
+                    <footer>
+                        <button name="action_confirm" string="Confirm" type='object' class="btn-primary" />
+                        <button string="Cancel" special='cancel' class="btn-secondary" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="property_wizard_action" model="ir.actions.act_window">
+        <field name="name">Property Wizard</field>
+        <field name="res_model">property.wizard</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="property_category" model="ir.module.category">
+            <field name="name">Real Estate</field>
+        </record>
+        <record id="property_manager_group" model="res.groups">
+            <field name="name">Property Manager</field>
+            <field name="category_id" ref="estate_module.property_category"></field>
+        </record>
+
+        <record id="property_user_group" model="res.groups">
+            <field name="name">Property User</field>
+            <field name="category_id" ref="estate_module.property_category"></field>
+        </record>
+
+        
+        <record id="property_by_user_rule" model="ir.rule">
+            <field name="name">Property By User</field>
+            <field name="model_id" ref="estate_module.model_property"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="True" />
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+        </record>
+        
+    </data>
+    
+</odoo>

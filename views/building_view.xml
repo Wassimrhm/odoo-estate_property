@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="building_view_tree" model="ir.ui.view">
+        <field name="name">building.view.tree</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"></field>
+                <field name="no"></field>
+                <field name="code"></field>
+                <field name="description"></field>
+                <field name="active"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="building_view_form" model="ir.ui.view">
+        <field name="name">building.view.form</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group string="General">
+                            <field name="name"></field>
+                            <field name="no"></field>
+                        </group>
+
+                        <group string="Additional">
+                            <field name="code"></field>
+                            <field name="description"></field>
+                            <field name="active"></field>
+                        </group>                    
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="building_view_search" model="ir.ui.view">
+        <field name="name">building.view.search</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="no"></field>
+                <field name="code"></field>
+            </search>
+        </field>
+    </record>
+
+    <record id="building_action" model="ir.actions.act_window">
+        <field name="name">Building</field>
+        <field name="res_model">building</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

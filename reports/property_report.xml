@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="action_report_property" model="ir.actions.report">
+        <field name="name">Property Report</field>
+        <field name="model">property</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">estate_module.property_report_template</field>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">tree,form</field>
+    </record>
+
+  <template id="property_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+
+                <t t-foreach="docs" t-as="rec">
+                    <div class="page">
+                        <h1 style="font-family : 'kaushan-script'">Property Report</h1>
+                        <table class="table table-sm">
+                            <thead><strong>General Infos</strong>
+                            </thead>
+
+                            <tr>
+                                <td><strong>Name:</strong></td>
+                                <td><span t-esc="rec.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Description:</strong></td>
+                                <td><span t-esc="rec.description"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bedrooms:</strong></td>
+                                <td><span t-esc="rec.bedrooms"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Expected Price:</strong></td>
+                                <td><span t-esc="rec.expected_price"/></td>
+                            </tr>
+                        </table>
+                        <table class="table table-sm">
+                            <thead><strong>Additional Infos</strong></thead>
+                            <tr>
+                                <td><strong>Selling Price:</strong></td>
+                                <td><span t-esc="rec.selling_price"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Owner:</strong></td>
+                                <td><span t-esc="rec.owner_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Owner Num:</strong></td>
+                                <td><span t-esc="rec.owner_phone"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Postcode:</strong></td>
+                                <td><span t-esc="rec.postcode"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Available On:</strong></td>
+                                <td><span t-esc="rec.date_availability"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Status:</strong></td>
+                                <td><span t-esc="rec.state"/></td>
+                            </tr>
+                        </table>
+                        <h3>Bedrooms Details</h3>
+                        <table>
+                            <tbody>
+                                <t t-foreach="rec.line_ids" t-as="line">
+                                <table class="table table-sm">
+                                    <thead><strong>Bedroom Info :</strong></thead>
+                                        <tr>
+                                            <td><strong>Name:</strong></td>
+                                            <td><span t-esc="line.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Area:</strong></td>
+                                            <td><span t-esc="line.area"/></td>
+                                        </tr>
+                                </table>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+
+            </t>
+        </t>
+    </template>
+
+</odoo>

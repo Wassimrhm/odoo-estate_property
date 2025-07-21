@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="bedroom_view_tree" model="ir.ui.view">
+        <field name="name">tag.view.tree</field>
+        <field name="model">bedroom</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"></field>
+                <field name="size"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="bedroom_view_form" model="ir.ui.view">
+        <field name="name">bedroom.view.form</field>
+        <field name="model">bedroom</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"></field>
+                        <field name="size"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="owner_view_tree" model="ir.ui.view">
+        <field name="name">Owner</field>
+        <field name="model">owner</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"></field>
+                <field name="phone"></field>
+                <field name="adress"></field>
+                <field name="property_ids" 
+                widget="many2many_tags"
+                ></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="owner_view_form" model="ir.ui.view">
+        <field name="name">owner form</field>
+        <field name="model">owner</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group string="Owner Infos">
+                        <field name="name"></field>
+                        <field name="phone"></field>
+                        <field name="adress"></field>
+                        <field name="property_ids" 
+                        widget="many2many_tags"
+                        ></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="owner_action" model="ir.actions.act_window">
+        <field name="name">Owner</field>
+        <field name="res_model">owner</field>
+        <field name="view_mode">tree,form</field>
+    </record>  
+
+      <record id="bedroom_action" model="ir.actions.act_window">
+        <field name="name">Bedroom</field>
+        <field name="res_model">bedroom</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

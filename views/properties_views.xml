@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="property_view_tree" model="ir.ui.view">
+        <field name="name">property tree</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <tree multi_edit='1' 
+            class="header_custom"
+            decoration-danger="(is_late)" 
+            >   <header>
+                    <button string="Exel Report" name="property_xlsx_report" type="object" class="oe_highlight"/>
+                </header>
+                <field name="name"></field>
+                <field name="ref"></field>
+                <field name="owner_id"></field>
+                <field name="date_availability"></field>
+                <field name="selling_price"></field>
+                <field name="postcode"></field>
+                <field name="state"></field>
+                <field name="is_late" invisible="1"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="property_view_form" model="ir.ui.view">
+        <field name="name">property form</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_related_owner" type="object" class="oe_stat_button" icon="fa-user"  attrs="{'invisible': [('owner_id', '=', 'False')]}" string="Owner">
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <widget name="web_ribbon" text="Sold" bg_color="bg-success" attrs="{'invisible': [('state', '!=', 'sold')]}"/>
+                    <widget name="web_ribbon" text="Closed" bg_color="bg-warning" attrs="{'invisible': [('state', '!=', 'close')]}"/>
+                    
+                    <header>             
+
+                        <button string="Action" name="action" type="object" class="oe_highlight"/>     
+                        <button string="Test Call Get Properties" name="get_properties" type="object" class="oe_highlight"/>    
+
+
+                         <!-- <field name="state" widget="statusbar" options="{'clickable':1}"/>          -->
+                         <button string="Draft" name="action_draft" type="object" class="oe_highlight"
+                             attrs="{'invisible': ['|',('state', '=', 'draft'),('state', '=', 'closed')]}"
+                         />  
+
+                         <button string="Pending" name="action_pending" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"
+                         />   
+
+                         <button string="Sold" name="action_sold" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'pending')]}"
+                         />
+
+                         <field name="state" widget="statusbar"></field>
+                        
+                    </header>
+                    <div class="oe_title">
+                        <label for='ref'/>
+                        <h1>
+                            <field name="ref"></field>
+                        </h1>
+
+                        <label for='name'/>
+                        <h3>
+                            <field name="name"  attrs="{'readonly': [('state', '=', 'closed')]}"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <group  string="Required informations">
+                            <field name="date_availability" attrs="{'readonly': [('state', '=', 'closed')]}"></field>
+                            <field name="creating_date"></field>
+                            <field name="expected_selling_date" attrs="{'readonly': [('state', '=', 'closed')]}"></field>
+                            <field name="postcode" attrs="{'readonly': [('state', '=', 'closed')]}"></field>
+                            <field name="expected_price"></field>
+                            <field name="selling_price"></field>
+                            <field name="difference"></field>
+                            <field name="bedrooms" 
+                            required="1"
+                            ></field>
+                            <field name="garden"></field>
+                            <field name="garage"></field>
+                            <field name="living_area"></field>
+                        </group>
+
+                        <group string="Additional informations">
+                            <field name="owner_id" attrs="{'readonly': [('state', '=', 'closed')]}"></field>
+                            <field name="owner_adress" attrs="{'readonly': [('state', '=', 'closed')]}"></field>
+                            <field name="owner_phone"></field>
+                            <field name="facades"></field>
+                            <field name="garden_area"></field>
+                            <field name="garden_orientation"></field>
+                            <field name="description"></field>
+                            <field name="active" attrs="{'readonly': [('state', '=', 'closed')]}"></field>
+                            <field name="is_late" 
+                            invisible="1"
+                            ></field>                           
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Bedrooms">
+                            <field name="line_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="area"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"></field>
+                    <field name="activity_ids"></field>
+                    <field name="message_ids"></field>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="property_view_search" model="ir.ui.view">
+        <field name="name">property search</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name"></field>
+                <field name="postcode"></field>
+
+                <filter name="has_garden" string="Garden included" domain="[('garden', '=', 'True')]" />
+                <filter name="has_garage" string="Garage included" domain="[('garage', '=', 'True')]" />
+                <filter name="bedrooms3" string="More than 3 bedrooms" domain="[('bedrooms', '>=', '3')]" />
+
+                <filter name="group_garden" string="Garden" context="{'group_by': 'garden'}" />
+                <filter name="group_garage" string="Garage" context="{'group_by': 'garage'}" />
+                <filter name="group_active" string="Active" context="{'group_by': 'active'}" />
+            </search>
+        </field>
+    </record>
+
+    <record id="help_view_tree" model="ir.ui.view">
+        <field name="name">Help</field>
+        <field name="model">help</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="Property_name"></field>
+                <field name="problem"></field>
+                <field name="property_post_code_declared"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="help_view_form" model="ir.ui.view">
+        <field name="name">help form</field>
+        <field name="model">help</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group string="Report Problem">
+                        <field name="Property_name"></field>
+                        <field name="problem"></field>
+                        <field name="property_post_code_declared"></field>
+                        <field name="detail"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="help_view_search" model="ir.ui.view">
+        <field name="name">help search</field>
+        <field name="model">help</field>
+        <field name="arch" type="xml">
+            <search string="">
+               <field name="Property_name"></field>
+               <field name="property_post_code_declared"></field>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="property_action" model="ir.actions.act_window">
+        <field name="name">Property</field>
+        <field name="res_model">property</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="help_action" model="ir.actions.act_window">
+        <field name="name">Help</field>
+        <field name="res_model">help</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="property_action_server" model="ir.actions.server">
+        <field name="name">Close Property</field>
+        <field name="model_id" ref="model_property"/>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="state">code</field>
+        <field name="code">
+            action=records.action_closed()
+        </field>
+    </record>
+
+    <record id="property_wizard_action_server" model="ir.actions.server">
+        <field name="name">Change State</field>
+        <field name="model_id" ref="model_property"/>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="state">code</field>
+        <field name="code">
+            action=records.action_open_change_state()
+        </field>
+    </record>
+
+    <record id="check_expected_date_cron" model="ir.cron">
+        <field name="name">Property : Check Expected Selling Date </field>
+        <field name="model_id" ref="model_property"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">1</field>
+        <field name="state">code</field>
+        <field name="code">
+            model.check_expected_selling_date()
+        </field>
+    </record>
+
+
+    <record id="list_view_action" model="ir.actions.client">
+        <field name="name">List View</field>
+        <field name="tag">estate_module.list_view_action</field>
+    </record>
+
+</odoo>

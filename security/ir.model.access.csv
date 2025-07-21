@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_property,access_property,model_property,,1,1,1,1
+access_help,access_help,model_help,,1,1,1,1
+access_owner,access_owner,model_owner,,1,1,1,1
+access_bedroom,access_bedroom,model_bedroom,,1,1,1,1
+access_client,access_client,model_client,,1,1,1,1
+access_property_line,access_property_line,model_property_line,,1,1,1,1
+access_building,access_building,model_building,,1,1,1,1
+access_property_hist,access_property_hist,model_property_hist,,1,1,1,1
+access_property_wizard,access_property_wizard,model_property_wizard,,1,1,1,1
+access_property_hist_line,access_property_hist_line,model_property_hist_line,,1,1,1,1

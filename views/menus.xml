@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="estate_menu_root" name="Real Estate" web_icon="estate_module,static/description/icon.png"/>
+
+        <menuitem id="estate_first_level_menu" name="Properties" parent="estate_menu_root" sequence="10"/>
+        <menuitem 
+            id="estate_menu_action"
+            name="Property"
+            parent="estate_first_level_menu"
+            action="property_action"
+
+        />
+        <menuitem 
+            id="prop_hist_menu_action"
+            name="Property History"
+            parent="estate_first_level_menu"
+            action="property_hist_action"
+
+        />
+        <menuitem 
+            id="property_list_view_menu_action"
+            name="Property OWL"
+            parent="estate_first_level_menu"
+            action="list_view_action"
+
+        />
+
+        
+        <menuitem id="config_first_level_menu" name="Configuration" parent="estate_menu_root" sequence="20"/>
+        <menuitem 
+            id="owner_menu_action"
+            name="Owners"
+            parent="config_first_level_menu"
+            action="owner_action"
+        />
+
+        <menuitem 
+            id="bedroom_menu_action"
+            name="Bedrooms"
+            parent="config_first_level_menu"
+            action="bedroom_action"
+        />
+
+        <menuitem 
+            id="building_menu_action"
+            name="Buildings"
+            parent="config_first_level_menu"
+            action="building_action"
+        />   
+
+        <menuitem id="help_first_level_menu" name="Help" parent="estate_menu_root" sequence="40"/>
+        <menuitem 
+            id="help_menu_action"
+            name="help"
+            parent="help_first_level_menu"
+            action="help_action"
+        />       
+    </data>
+
+</odoo>
