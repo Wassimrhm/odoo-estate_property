@@ -4,6 +4,7 @@
         <record id="property_category" model="ir.module.category">
             <field name="name">Real Estate</field>
         </record>
+ 
         <record id="property_manager_group" model="res.groups">
             <field name="name">Property Manager</field>
             <field name="category_id" ref="estate_module.property_category"></field>
