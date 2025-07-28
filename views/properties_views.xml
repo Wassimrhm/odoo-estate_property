@@ -5,10 +5,8 @@
         <field name="name">property tree</field>
         <field name="model">property</field>
         <field name="arch" type="xml">
-            <tree multi_edit='1' 
-            class="header_custom"
-            decoration-danger="(is_late)" 
-            >   <header>
+            <tree multi_edit='1' class="header_custom" decoration-danger="is_late" >   
+                <header>
                     <button string="Exel Report" name="property_xlsx_report" type="object" class="oe_highlight"/>
                 </header>
                 <field name="name"></field>
@@ -184,7 +182,7 @@
     <record id="property_action" model="ir.actions.act_window">
         <field name="name">Property</field>
         <field name="res_model">property</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <record id="help_action" model="ir.actions.act_window">

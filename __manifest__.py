@@ -17,6 +17,7 @@
         "views/res_partner_view.xml",
         "views/building_view.xml",
         "views/account_move_view.xml",
+        "views/property_kanban_view.xml",
         "wizards/property_wizard_view.xml",
         "reports/property_report.xml",
         "views/menus.xml",

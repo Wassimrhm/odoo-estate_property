@@ -1,7 +1,7 @@
 from odoo import models,fields
 
 
-class changestate(models.Model):
+class changestate(models.TransientModel):
     _name='property.wizard'
     _description="change the state"
 
